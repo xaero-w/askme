@@ -1,11 +1,12 @@
-require 'openssl'
+# (c) goodprogrammer.ru
 
+# Эта библиотека понадобится нам для шифрования.
 require 'openssl'
 
 # Модель пользователя.
 #
 # Каждый экземпляр этого класса — загруженная из БД инфа о конкретном юзере.
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   # Параметры работы для модуля шифрования паролей
   ITERATIONS = 20_000
   DIGEST = OpenSSL::Digest::SHA256.new
@@ -25,18 +26,6 @@ class User < ActiveRecord::Base
   # значением user_id равный user.id.
   has_many :questions
 
-  #===== проверка формата почты
-  EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email, presence: true, format: { with: EMAIL_REGEX }
-
-  #===== проверка максимальной длины юзернейма пользователя (не больше 40 символов)
-  validates :username, length: { maximum: 40 }
-
-  #===== проверка формата юзернейма пользователя (только латинские буквы, цифры, и знак _)
-  FORMAT_USERNAME = /\A[a-z]+\_\z/
-  validates :username, format: { with: FORMAT_USERNAME }
-
-
   # Валидация, которая проверяет, что поля email и username не пустые и не равны
   # nil. Если не задан email и username, объект не будет сохранен в базу.
   validates :email, :username, presence: true
@@ -49,6 +38,22 @@ class User < ActiveRecord::Base
   # Поле password нужно только при создании (create) нового юзера — регистрации.
   # При аутентификации (логине) мы будем сравнивать уже зашифрованные поля.
   validates :password, presence: true, on: :create
+
+  #===== проверка формата почты
+  validates :email, :with => /.+@.+\..+/i
+
+  #===== проверка максимальной длины юзернейма пользователя (не больше 40 символов)
+  validates :username, length: { maximum: 40 }
+
+  before_save :lower_case
+
+  def lower_case
+    self.username = username.downcase
+  end
+
+  # ===== проверка формата юзернейма пользователя (только латинские буквы, цифры, и знак _)
+  FORMAT_USERNAME = /\A[a-z0-9_]+\z/
+  validates :username, format: { with: FORMAT_USERNAME }
 
   # Валидация, которая проверяет совпадения значений полей password и
   # password_confirmation. Понадобится при создании формы регистрации, чтобы
