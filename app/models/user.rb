@@ -1,4 +1,5 @@
 require 'openssl'
+# require 'database_validation'
 
 class User < ApplicationRecord
 
@@ -11,39 +12,30 @@ class User < ApplicationRecord
   has_many :questions
 
   #=========== Проверка формата ввода юзернейма, уникальности и его длинны.
-  validates :username,
-            length: { maximum: 40 },
-            presence: true,
-            format: { with: LETTERS_FOR_NAME },
-            uniqueness: { case_sensitive: false }
+  validates :username, length: { maximum: 40 }, presence: true, format: { with: LETTERS_FOR_NAME }
+  validates :username, uniqueness: true
 
   #=========== Проверка уникальности почтового адреса.
-  validates :email,
-            presence: true,
-            uniqueness: { case_sensitive: false },
-            format: { with: FORMAT_EMAIL }
+  validates :email, presence: true, uniqueness: true, format: { with: FORMAT_EMAIL }
 
   #=========== Проверка наличия пароля.
-  validates :password,
-            presence: true,
-            on: :create
+  validates :password, presence: true, on: :create
 
   #=========== Перевод юзернейма в нижний регистр.
-  before_save :lower_case_name
+  before_validation :lower_case_name
 
   def lower_case_name
     self.username = username.downcase
   end
 
   #=========== Перевод почтового адреса в нижний регистр.
-  before_save :lower_case_email
+  before_validation :lower_case_email
 
   def  lower_case_email
     self.email = email.downcase
   end
 
   validates_confirmation_of :password
-
   before_save :encrypt_password
 
   def encrypt_password

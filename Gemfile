@@ -22,6 +22,10 @@ gem 'webpacker', '~> 4.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+# DatabaseValidations helps you to keep the database consistency with better performance.
+# Right now, it supports only ActiveRecord.
+# gem 'database_validation'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
