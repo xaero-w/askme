@@ -1,5 +1,4 @@
 require 'openssl'
-# require 'database_validation'
 
 class User < ApplicationRecord
 
@@ -20,33 +19,21 @@ class User < ApplicationRecord
 
   #=========== Проверка наличия пароля.
   validates :password, presence: true, on: :create
+  validates_confirmation_of :password
 
-  #=========== Перевод юзернейма в нижний регистр.
+  #=========== Перевод юзернейма и почты в нижний регистр
   before_validation :lower_case_name
+  before_validation :lower_case_email
+
+  #=========== Обезличивание пароля
+  before_save :encrypt_password
 
   def lower_case_name
     self.username = username.downcase
   end
 
-  #=========== Перевод почтового адреса в нижний регистр.
-  before_validation :lower_case_email
-
-  def  lower_case_email
+  def lower_case_email
     self.email = email.downcase
-  end
-
-  validates_confirmation_of :password
-  before_save :encrypt_password
-
-  def encrypt_password
-    if password.present?
-      self.password_salt = User.hash_to_string(OpenSSL::Random.random_bytes(16))
-      self.password_hash = User.hash_to_string(
-        OpenSSL::PKCS5.pbkdf2_hmac(
-          password, password_salt, ITERATIONS, DIGEST.length, DIGEST
-        )
-      )
-    end
   end
 
   def self.hash_to_string(password_hash)
@@ -63,5 +50,16 @@ class User < ApplicationRecord
     )
     return user if user.password_hash == hashed_password
     nil
+  end
+
+  def encrypt_password
+    if password.present?
+      self.password_salt = User.hash_to_string(OpenSSL::Random.random_bytes(16))
+      self.password_hash = User.hash_to_string(
+        OpenSSL::PKCS5.pbkdf2_hmac(
+          password, password_salt, ITERATIONS, DIGEST.length, DIGEST
+        )
+      )
+    end
   end
 end
