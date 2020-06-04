@@ -1,9 +1,10 @@
 <h1><%= @user.name %></h1>
 
 <div>
-  <%= image_tag @user.avatar_url, alt: "[Foto]" %>
+  <%= image_tag @user.avatar_url, alt: "[Foto]", width: 400%>
 </div>
 
-<h2><%= @user.username %></h2>
+<h2>@<%= @user.username %></h2>
 
 <a href="#" class="button button-green">Задать вопрос</a>
+
