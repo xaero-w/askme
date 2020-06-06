@@ -6,19 +6,26 @@
   padding: 15px 30px;
   text-shadow: 2px 1px 1px rgba(0, 0, 0, 0.15);
   font-weight: bold;
+  border: none;
+}
+
+.button-dark {
+  background: #2e2f41;
+  color: #fff;
 }
 
 .button-green {
-  background: #8aba56;
+  background: #005a55;
   color: #fff;
 }
 
-.button-blue {
-  background: #59a3fc;
+.button-light {
+  background: #00948a;
   color: #fff;
 }
 
-.button-gray {
-  background: #aaa;
-  color: #fff;
+.button-small {
+  font-size: 15px;
+  line-height: 15px;
+  padding: 7px 15px;
 }

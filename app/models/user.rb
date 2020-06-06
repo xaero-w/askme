@@ -4,7 +4,7 @@ class User < ApplicationRecord
 
   ITERATIONS = 20_000
   DIGEST = OpenSSL::Digest::SHA256.new
-  FORMAT_EMAIL = /[a-zA-Z0-9\-\_]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9]/
+  FORMAT_EMAIL = /\A.+@.+\z/
   LETTERS_FOR_NAME = /[a-z0-9_-]/
 
   attr_accessor :password
