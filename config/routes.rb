@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   # root "users#index"
 
   resource :users
+  resource :questions
 
   get "show" => "users#index"
 end

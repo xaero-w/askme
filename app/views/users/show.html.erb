@@ -8,3 +8,19 @@
 
 <a href="#" class="button button-green">Задать вопрос</a>
 
+<% @questions.each do |question| %>
+  <%= render partial: "questions/question", object: question %>
+<% end %>
+
+<div class="user-question-form buffer-both">
+  <div class="form">
+    <%= form_for @new_question do |f| %>
+      <%= f.hidden_field :user_id %>
+
+      <div class="form-field"></div>
+        <%= f.label "Ваш вопрос для @#{@user.username}", class: "form-label"%>
+        <%= f.text_area :text, class: "form-textarea" %>
+      </div>
+    <% end %>
+  </div>
+</div>

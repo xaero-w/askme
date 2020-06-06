@@ -14,21 +14,18 @@
  * Этот файл называется манифести стилей и он определяет, какие стили будут
  * собраны в стилевой файл для вашего приложения.
  *
- * Подключаем reset.css
  *= require reset
- *
- * Подключаем общие стили для всех страниц
+
  *= require text
  *= require grid
  *= require button
  *= require form
- *
- * Подключаем стили, специфичные для конкретных view-файлов
+ *= require_self
+
  *= require layout
  *= require users
  *= require questions
  *
  * Подключаем сам файл application.css. Если бы ниже были правила css стилей,
  * они тоже попали бы в конечный стилевой файл.
- *= require_self
  */
