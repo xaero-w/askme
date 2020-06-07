@@ -1,26 +1,34 @@
-<h1><%= @user.name %></h1>
+<!--<div class="user-header text-center"-->
+<!--  <h1>-->
+<%#= @user.name %>
+<!--  </h1>-->
 
-<div>
-  <%= image_tag @user.avatar_url, alt: "[Foto]", width: 400%>
-</div>
+<!--  <div class="user-image-div">-->
+<%#= image_tag @user.avatar_url, alt: "[Foto]", width: 400%>
+<!--  </div>-->
 
-<h2>@<%= @user.username %></h2>
+<!--  <h2 class="title-small buffer-both">-->
+<!--    @<%#= @user.username %>-->
+<!--  </h2>-->
 
-<a href="#" class="button button-green">Задать вопрос</a>
+<!--  <a href="#" class="button button-green">Задать вопрос</a>-->
 
-<% @questions.each do |question| %>
-  <%= render partial: "questions/question", object: question %>
-<% end %>
+<%# @questions.each do |question| %>
+<%#= render partial: "questions/question", object: question %>
+<%# end %>
 
-<div class="user-question-form buffer-both">
-  <div class="form">
-    <%= form_for @new_question do |f| %>
-      <%= f.hidden_field :user_id %>
 
-      <div class="form-field"></div>
+<div class="column-3-4"
+  <div class="user-question-form buffer-both">
+    <div class="form">
+      <%= form_for @new_question do |f| %>
+        <%= f.hidden_field :user_id %>
+
+        <div class="form-field"></div>
         <%= f.label "Ваш вопрос для @#{@user.username}", class: "form-label"%>
         <%= f.text_area :text, class: "form-textarea" %>
+        </div>
+      <% end %>
       </div>
-    <% end %>
   </div>
 </div>
