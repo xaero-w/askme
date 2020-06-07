@@ -44,13 +44,15 @@ class UsersController < ApplicationController
     # Болванка вопросов для пользователя
     @questions = [
       Question.new(text: 'Как дела?', created_at: Date.parse('27.03.2016')),
-      Question.new(
-        text: 'В чем смысл жизни?', created_at: Date.parse('27.03.2016')
-      )
+      Question.new(text: 'В чем смысл жизни?', created_at: Date.parse('27.03.2016'))
     ]
 
     # Болванка для нового вопроса
     @new_question = Question.new
+
+    @questions_count = @questions.count
+    @with_answer_count = 0
+    @unanswered_count = @questions_count - @with_answer_count
 
     # Обратите внимание, пока ни одна из болванок не достается из базы
   end

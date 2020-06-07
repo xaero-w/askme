@@ -66,4 +66,29 @@
       <% end %>
     </div>
   </div>
+
+  <div class="column-3-4">
+  <div class="user-questions buffer-both">
+
+    <div class="text-center">
+      <%= @questions_count %>
+      <%= declension(@questions_count, 'вопрос', 'вопроса', 'вопросов') %>
+    </div>
+
+    <div class="text-center">
+      С ответом - <%= @with_answer_count %>
+      <%= declension(@with_answer_count, 'вопрос', 'вопроса', 'вопросов') %>
+    </div>
+
+    <div class="text-center">
+      Без ответа - <%= @unanswered_count %>
+      <%= declension(@unanswered_count, 'вопрос', 'вопроса', 'вопросов') %>
+    </div>
+
+    <div class="questions-list">
+      <% @questions.each do |question| %>
+        <%= render partial: 'questions/question', object: question %>
+      <% end %>
+    </div>
+  </div>
 </div>
