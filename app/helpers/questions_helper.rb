@@ -4,16 +4,10 @@ module QuestionsHelper
 
     return enotov if (number % 100).between?(11, 14)
 
-    if (remainder == 1) # 1 енот
-      return enot
-    end
+    return enot if remainder == 1
 
-    if (remainder >= 2 && remainder <= 4) # 2-4 енота
-      return enota
-    end
+    return enota if (2..4).include?(remainder)
 
-    if (remainder >= 4 && remainder <= 9 || remainder == 0) # 5-9 енотов
-      return enotov
-    end
+    return enotov if (4..9)include?(remainder) || remainder == 0
   end
 end
