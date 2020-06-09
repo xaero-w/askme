@@ -26,18 +26,6 @@ class User < ApplicationRecord
   before_validation :lower_case_name
   before_validation :lower_case_email
 
-  def lower_case_name
-    if self.username.present?
-      self.username = username.downcase
-    end
-  end
-
-  def lower_case_email
-    if self.email.present?
-      self.email = email.downcase
-    end
-  end
-
   def self.hash_to_string(password_hash)
     password_hash.unpack('H*')[0]
   end
@@ -52,6 +40,14 @@ class User < ApplicationRecord
     )
     return user if user.password_hash == hashed_password
     nil
+  end
+
+  def lower_case_name
+    self.username = username.downcase if self.username.present?
+  end
+
+  def lower_case_email
+    self.email = email.downcase if self.email.present?
   end
 
   def encrypt_password
