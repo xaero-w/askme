@@ -9,20 +9,13 @@ class User < ApplicationRecord
   attr_accessor :password
   has_many :questions
 
-  #=========== Проверка формата ввода юзернейма, уникальности и его длинны.
   validates :username, presence: true, uniqueness: true
   validates :username, length: { maximum: 40 }, format: { with: /\A[a-zA-Z0-9_-]+\z/ }
-
-  #=========== Проверка уникальности почтового адреса.
   validates :email, presence: true, uniqueness: true
   validates :email, format: { with: /\A.+@.+\z/ }
-
-  #=========== Проверка наличия пароля.
   validates :password, presence: true, on: :create
+  validates :password_conformation, presence: true
 
-  validates_confirmation_of :password
-
-  #=========== Перевод юзернейма и почты в нижний регистр
   before_validation :lower_case_name
   before_validation :lower_case_email
 
@@ -42,13 +35,15 @@ class User < ApplicationRecord
     nil
   end
 
-  def lower_case_name
-    self.username = username.downcase if self.username.present?
+  def lower_case_username
+    self.username.downcase! if self.username.present?
   end
 
   def lower_case_email
-    self.email = email.downcase if self.email.present?
+    self.email.downcase! if self.email.present?
   end
+
+  private
 
   def encrypt_password
     if password.present?

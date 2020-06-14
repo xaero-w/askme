@@ -8,6 +8,6 @@ module QuestionsHelper
 
     return enota if (2..4).include?(remainder)
 
-    return enotov if (4..9)include?(remainder) || remainder == 0
+    return enotov if (4..9).include?(remainder) || remainder == 0
   end
 end

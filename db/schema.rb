@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_01_195700) do
+ActiveRecord::Schema.define(version: 2020_06_14_092706) do
 
   create_table "questions", force: :cascade do |t|
     t.string "text"
@@ -30,6 +30,8 @@ ActiveRecord::Schema.define(version: 2020_06_01_195700) do
     t.string "password_hash"
     t.string "password_salt"
     t.string "avatar_url"
+    t.string "user_index"
+    t.string "email_index"
   end
 
 end
