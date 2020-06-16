@@ -13,11 +13,10 @@ class User < ApplicationRecord
   validates :username, length: { maximum: 40 }, format: { with: /\A[a-zA-Z0-9_-]+\z/ }
   validates :email, presence: true, uniqueness: true
   validates :email, format: { with: /\A.+@.+\z/ }
-  validates :password, presence: true, on: :create
-  validates :password_conformation, presence: true
+  validates :password, presence: true, confirmation: true, on: :create
 
-  before_validation :lower_case_name
-  before_validation :lower_case_email
+  after_validation :lower_case_username
+  after_validation :lower_case_email
 
   def self.hash_to_string(password_hash)
     password_hash.unpack('H*')[0]
@@ -36,11 +35,11 @@ class User < ApplicationRecord
   end
 
   def lower_case_username
-    self.username.downcase! if self.username.present?
+    self.username = username&.downcase
   end
 
   def lower_case_email
-    self.email.downcase! if self.email.present?
+    self.email = email&.downcase
   end
 
   private
