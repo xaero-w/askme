@@ -10,9 +10,9 @@ class User < ApplicationRecord
   has_many :questions
 
   validates :username, presence: true
-  validates :username, length: { maximum: 40 }, format: { with: /\A[a-zA-Z0-9_-]+\z/ }
+  validates :username, length: { maximum: 40 }, format: { with: LETTERS_FOR_NAME }
   validates :email, presence: true
-  validates :email, format: { with: /\A.+@.+\z/ }
+  validates :email, format: { with: FORMAT_EMAIL }
   validates :password, presence: true, confirmation: true, on: :create
 
   after_validation :lower_case_username
@@ -34,6 +34,7 @@ class User < ApplicationRecord
     nil
   end
 
+  private
   def lower_case_username
     self.username = username&.downcase
   end
@@ -41,8 +42,6 @@ class User < ApplicationRecord
   def lower_case_email
     self.email = email&.downcase
   end
-
-  private
 
   def encrypt_password
     if password.present?
