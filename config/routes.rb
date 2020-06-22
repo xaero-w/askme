@@ -1,18 +1,15 @@
 Rails.application.routes.draw do
-  # get 'users/index'
-  # get 'users/new'
-  # get 'users/edit'
-  # get 'users/show'
-  # get 'users/index'
-  # get 'users/new'
-  # get 'users/edit'
-  # get 'users/show'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  root "users#show"
-  # root "users#index"
+  root 'users#index'
 
-  resource :users
-  resource :questions
+  resources :users, except: [:destroy]
+  resources :sessions, only: [:new, :create, :destroy]
+  resources :questions, except: [:show, :new, :index]
 
-  get "show" => "users#index"
+  # Синонимы путей — в дополнение к созданным в ресурсах выше.
+  #
+  # Для любознательных: синонимы мы добавили, чтобы показать одну вещь и потом
+  # их удалим.
+  get 'sign_up' => 'users#new'
+  get 'log_out' => 'sessions#destroy'
+  get 'log_in' => 'sessions#new'
 end
