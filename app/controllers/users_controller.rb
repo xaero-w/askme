@@ -99,6 +99,11 @@ class UsersController < ApplicationController
     # создаем болванку вопроса, вызывая метод build у результата вызова метода
     # @user.questions.
     @new_question = @user.questions.build
+    # Создаем три переменные с количеством вопросов, отвеченных вопросов и
+    # безответных вопросов
+    @questions_count = @questions.count
+    @answers_count = @questions.where.not(answer: nil).count
+    @unanswered_count = @questions_count - @answers_count
   end
 
   private

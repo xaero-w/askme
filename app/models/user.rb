@@ -18,22 +18,6 @@ class User < ApplicationRecord
   after_validation :lower_case_username
   after_validation :lower_case_email
 
-  def self.hash_to_string(password_hash)
-    password_hash.unpack('H*')[0]
-  end
-
-  def self.authenticate(email, password)
-    user = find_by(email: email)
-    return nil unless user.present?
-    hashed_password = User.hash_to_string(
-      OpenSSL::PKCS5.pbkdf2_hmac(
-        password, user.password_salt, ITERATIONS, DIGEST.length, DIGEST
-      )
-    )
-    return user if user.password_hash == hashed_password
-    nil
-  end
-
   private
   def lower_case_username
     self.username = username&.downcase
@@ -41,6 +25,10 @@ class User < ApplicationRecord
 
   def lower_case_email
     self.email = email&.downcase
+  end
+
+  def self.hash_to_string(password_hash)
+    password_hash.unpack('H*')[0]
   end
 
   def encrypt_password
