@@ -1,2 +1,24 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<div class="container content-wrapper buffer-both">
+  <h1 class="title-medium">Править профиль</h1>
+
+  <div class="column-1-2">
+    <%= form_for(@user) do |f| %>
+        <!-- Вывод ошибок валидации пользователя (если есть) -->
+        <% if @user.errors.any? %>
+            <div class="form-errors">
+              <ul>
+                <% for message in @user.errors.full_messages %>
+                    <li class="form-error-message"><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
+
+        <div class="form-action buffer-top">
+          <%= f.submit 'Сохранить', class: 'button button-dark button-small' %>
+          <%= link_to 'Удалить профиль', user_path(@user), class: 'button button-red button-small',
+                      method: :delete, data: {confirm: 'Точно удалить профиль?'} if current_user == @user %>
+        </div>
+    <% end %>
+  </div>
+</div>
