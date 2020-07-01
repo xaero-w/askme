@@ -22,6 +22,15 @@
     </div>
   </div>
 
+       <div class="question-author">
+      <% if question.author.nil? %>
+        <p>Вопрос от Анонима</p>
+      <% else %>
+        <p>Вопрос от <%= link_to question.author.username, user_path(question.author) %></p>
+      <% end %>
+    </div>
+  </div>
+
   <%# Если адресат вопроса — текущий пользователь, он может редактировать вопрос %>
   <%# и отвечать на него %>
   <% if question.user == current_user %>

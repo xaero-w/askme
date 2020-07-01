@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   # Проверяем имеет ли юзер доступ к экшену, делаем это для всех действий, кроме
   # :index, :new, :create, :show — к этим действиям есть доступ у всех, даже у
   # тех, у кого вообще нет аккаунта на нашем сайте.
-  before_action :authorize_user, except: [:index, :new, :create, :show]
+  before_action :authorize_user, except: [:index, :new, :create, :show, :destroy]
 
   def index
     @users = User.all
@@ -107,6 +107,12 @@ class UsersController < ApplicationController
     @unanswered_count = @questions_count - @answers_count
   end
 
+  def destroy
+    log_out
+    @user.destroy
+    redirect_to root_path, notice: 'Ваш аккаунт успешно удален'
+  end
+
   private
 
   # Если загруженный из базы юзер и текущий залогиненный не совпадают — посылаем
@@ -127,6 +133,6 @@ class UsersController < ApplicationController
   # :avatar_url. Другие ключи будут отброшены.
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation,
-                                 :name, :username, :avatar_url)
+                                 :name, :username, :avatar_url, :avatar_color)
   end
 end

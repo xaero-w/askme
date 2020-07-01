@@ -7,7 +7,7 @@
   <%# Этот код выводит каждого пользователя в цикле %>
   <% @users.each do |user| %>
       <div class="users-list-item">
-        <div class="user-image-div user-image-div-small">
+        <div class="user-image-div user-image-div-small" style="border-color: <%= user.avatar_color %>;">
           <%# Пользуемся аж тремя хелперами %>
           <%# link_to — генерирует ссылку %>
           <%# image_tag — генерирует картинку %>

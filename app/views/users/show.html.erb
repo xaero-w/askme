@@ -9,7 +9,7 @@
 
   <%# Добавляем ссылку для редактирования пользователя, которая ведет на %>
   <%# страницу /users/:id/edit %>
-  <div class="user-image-div">
+  <div class="user-image-div" style="border-color: <%= @user.avatar_color %>;">
     <%= image_tag user_avatar(@user), class: 'user-image', alt: '[Фото]' %>
   </div>
 

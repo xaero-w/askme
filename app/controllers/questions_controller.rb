@@ -28,7 +28,14 @@ class QuestionsController < ApplicationController
   def create
     @question = Question.new(question_params)
 
+    if current_user.present?
+      @question.author_id = current_user.id
+    else
+      @question.author = nil
+    end
+
     if @question.save
+      # После сохранения вопроса редиректим на пользователя
       redirect_to user_path(@question.user), notice: 'Вопрос задан'
     else
       render :edit
@@ -86,7 +93,7 @@ class QuestionsController < ApplicationController
     # Защита от уязвимости: если текущий пользователь — адресат вопроса,
     # он может менять ответы на вопрос, ему доступно также поле :answer.
     if current_user.present? &&
-       params[:question][:user_id].to_i == current_user.id
+      params[:question][:user_id].to_i == current_user.id
       params.require(:question).permit(:user_id, :text, :answer)
     else
       params.require(:question).permit(:user_id, :text)
