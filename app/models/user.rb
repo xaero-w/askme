@@ -10,11 +10,18 @@ class User < ApplicationRecord
   attr_accessor :password
   has_many :questions, dependent: :destroy
 
-  validates :username, presence: true
-  validates :username, length: { maximum: 40 }, format: { with: LETTERS_FOR_NAME }
-  validates :email, presence: true
-  validates :email, format: { with: FORMAT_EMAIL }
-  validates :password, presence: true, confirmation: true, on: :create
+  validates :username, presence: true,
+                       uniqueness: true,
+                       length: { maximum: 40 },
+                       format: { with: LETTERS_FOR_NAME }
+
+  validates :email, presence: true,
+                    format: { with: FORMAT_EMAIL }
+
+  validates :password, presence: true,
+                       confirmation: true,
+                       on: :create
+
   validates :avatar_color, format: { with: FAVORITE_COLOR },
                            allow_nil: true
 
