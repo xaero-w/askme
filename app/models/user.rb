@@ -5,7 +5,7 @@ class User < ApplicationRecord
   DIGEST = OpenSSL::Digest::SHA256.new
   FORMAT_EMAIL = /\A.+@.+\z/
   LETTERS_FOR_NAME = /\A[a-zA-Z0-9_-]+\z/
-  FAVORITE_COLOR = /\A\#[[:xdigit:]]{6}\z/
+  FAVORITE_COLOR = /\A\#[a-fA-F0-9]{6}\z/
 
   attr_accessor :password
   has_many :questions, dependent: :destroy
@@ -15,8 +15,8 @@ class User < ApplicationRecord
   validates :email, presence: true
   validates :email, format: { with: FORMAT_EMAIL }
   validates :password, presence: true, confirmation: true, on: :create
-  validates :avatar_color, format: { with: FAVORITE_COLOR }
-
+  validates :avatar_color, format: { with: FAVORITE_COLOR },
+                           allow_nil: true
 
   after_validation :lower_case_username
   after_validation :lower_case_email
