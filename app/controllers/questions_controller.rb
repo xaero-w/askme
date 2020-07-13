@@ -29,7 +29,7 @@ class QuestionsController < ApplicationController
     @question = Question.new(question_params)
 
     if current_user.present?
-      @question.author_id = current_user.id
+      @question.author = current_user
     else
       @question.author = nil
     end
