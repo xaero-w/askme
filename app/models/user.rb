@@ -18,9 +18,8 @@ class User < ApplicationRecord
   validates :email, presence: true,
                     format: { with: FORMAT_EMAIL }
 
-  validates :password, presence: true,
-                       confirmation: true,
-                       on: :create
+  validates :password, presence: true, on: :create,
+                       confirmation: true
 
   validates :avatar_color, format: { with: FAVORITE_COLOR },
                            allow_nil: true

@@ -3,12 +3,6 @@
     <%= @user.name %>
   </h1>
 
-  <div class="buffer-both">
-    <%= link_to 'Редактировать профиль', edit_user_path(@user) if current_user == @user %>
-  </div>
-
-  <%# Добавляем ссылку для редактирования пользователя, которая ведет на %>
-  <%# страницу /users/:id/edit %>
   <div class="user-image-div" style="border-color: <%= @user.avatar_color %>;">
     <%= image_tag user_avatar(@user), class: 'user-image', alt: '[Фото]' %>
   </div>
@@ -17,38 +11,37 @@
     @<%= @user.username %>
   </h2>
 
-  <div class="user-ask-button container text-center">
-    <%= link_to "Спроси меня", '', class: 'button button-light', id: 'ask-button' %>
+  <div class="buffer-both">
+    <%= link_to 'Редактировать профиль', edit_user_path(@user) if current_user == @user%>
   </div>
 
-  <div class="user-statistics container text-center">
-    <div class="column-1-3">
-      <h1 class="title-small"><%= @questions_count %></h1>
-      <p>вопросов</p>
+  <div class="user-details">
+    <div class="user-ask-button container text-center">
+      <%= link_to "Спроси меня", '', class: 'button button-light', id: 'ask-button' %>
     </div>
-    <div class="column-1-3">
-      <h1 class="title-small"><%= @answers_count %></h1>
-      <p>ответов</p>
-    </div>
-    <div class="column-1-3">
-      <h1 class="title-small"><%= @unanswered_count %></h1>
-      <p>безответных</p>
+
+    <div class="user-statistics container text-center">
+      <div class="column-1-3">
+        <h1 class="title-small"><%= t('user.questions', count: @questions_count) %></h1>
+      </div>
+      <div class="column-1-3">
+        <h1 class="title-small"><%= t('user.answers', count: @answers_count) %></h1>
+      </div>
+      <div class="column-1-3">
+        <h1 class="title-small"><%= t('user.unanswered', count: @unanswered_count) %></h1>
+      </div>
     </div>
   </div>
-</div>
-
 </div>
 
 <div class="user-question-form-div column-1-4 column-1-4-right" id='ask-form'>
   <div class="user-question-form buffer-both">
     <%= form_for @new_question do |f| %>
       <%= f.hidden_field :user_id %>
-
       <div class="form-field">
         <%= f.label "Ваш вопрос для @#{@user.username}", class: 'form-label' %>
         <%= f.text_area :text, class: 'form-textarea' %>
       </div>
-
       <div class="form-action">
         <%= submit_tag 'Задать вопрос', class: 'button button-small button-dark' %>
       </div>
@@ -57,12 +50,12 @@
 </div>
 
 <div class="column-3-4">
-  <div class="user-questions buffer-both">
+  <div class="user-questions">
+    <div class="buffer-both">
+      <%= content_tag(:h3, t('user.questions', count: @questions_count), class: "title-medium text-center") %>
+    </div>
     <div class="questions-list">
       <% @questions.each do |question| %>
-        <%# Мы рисуем здесь для кажого вопроса в списке вопросов фрагмент %>
-        <%# (паршал), передавая в него текущий вопрос. Это очень похоже на %>
-        <%# вызов метода в ruby. %>
         <%= render partial: 'questions/question', object: question %>
       <% end %>
     </div>
