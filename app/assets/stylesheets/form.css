@@ -1,4 +1,3 @@
-
 .form-field {
   margin-bottom: 10px;
 }
@@ -13,8 +12,7 @@
 }
 
 .form-textarea,
-.form-text-field,
-.form-drop-menu {
+.form-text-field {
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
