@@ -28,11 +28,7 @@ class QuestionsController < ApplicationController
   def create
     @question = Question.new(question_params)
 
-    if current_user.present?
-      @question.author = current_user
-    else
-      @question.author = nil
-    end
+    @question.author = current_user
 
     if @question.save
       # После сохранения вопроса редиректим на пользователя
