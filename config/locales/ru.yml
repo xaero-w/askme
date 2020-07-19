@@ -1,9 +1,0 @@
-ru:
-  user:
-    questions:
-      zero: "Нет вопросов"
-      one: "%{count} вопрос"
-      few: "%{count} вопроса"
-      many: "%{count} вопросов"
-      other: "%{count} вопросов"
-
