@@ -1,22 +1,21 @@
 ru:
-question:
-    zero: 'вопросов'
-    one: 'вопрос'
-    few: 'вопроса'
-    many: 'вопросов'
-    other: 'вопросы'
-
-  answer:
-    zero: 'ответов'
-    one: 'ответ'
-    few: 'ответа'
-    many: 'ответов'
-    other: 'ответы'
-
-  noanswer:
-    zero: 'безответных'
-    one: 'безответный'
-    few: 'безответных'
-    many: 'безответных'
-    other: 'безответные'
+  user:
+    questions:
+      zero: "%{count} вопросов"
+      one: "%{count} вопрос"
+      few: "%{count} вопроса"
+      many: "%{count} вопросов"
+      other: "%{count} вопросов"
+    answers:
+      zero: "%{count} ответов"
+      one: "%{count} ответ"
+      few: "%{count} ответа"
+      many: "%{count} ответов"
+      other: "%{count} ответов"
+    unanswered:
+      zero: "%{count} неотвеченных"
+      one: "%{count} неотвеченый"
+      few: "%{count} неотвеченных"
+      many: "%{count} неотвеченных"
+      other: "%{count} неотвеченных"
 
