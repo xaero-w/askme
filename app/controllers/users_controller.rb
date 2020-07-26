@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   # Проверяем имеет ли юзер доступ к экшену, делаем это для всех действий, кроме
   # :index, :new, :create, :show — к этим действиям есть доступ у всех, даже у
   # тех, у кого вообще нет аккаунта на нашем сайте.
-  before_action :authorize_user, except: [:index, :new, :create, :show, :destroy]
+  before_action :authorize_user, except: [:index, :new, :create, :show]
 
   def index
     @users = User.all
