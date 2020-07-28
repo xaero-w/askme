@@ -109,6 +109,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    @user.destroy
     log_out
     redirect_to root_path, notice: 'Ваш аккаунт успешно удален'
   end
