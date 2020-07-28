@@ -7,7 +7,7 @@
 #   3. Позволять пользователю редактировать свою страницу
 #
 class UsersController < ApplicationController
-  # Загружаем юзера из базы для экшенов кроме :index, :create, :new
+  # Загружаем юзера из базы для экшенов кроме :index, :create, :newзанят
   before_action :load_user, except: [:index, :create, :new]
 
   # Проверяем имеет ли юзер доступ к экшену, делаем это для всех действий, кроме
@@ -109,9 +109,8 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user.destroy if @user == current_user
-    redirect_to root_path, notice: 'Ваш аккаунт успешно удален'
     log_out
+    redirect_to root_path, notice: 'Ваш аккаунт успешно удален'
   end
 
   private
