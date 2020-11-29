@@ -1,4 +1,4 @@
-require 'openssl'
+require "openssl"
 
 class User < ApplicationRecord
   ITERATIONS = 20_000
@@ -39,7 +39,7 @@ class User < ApplicationRecord
   end
 
   def self.hash_to_string(password_hash)
-    password_hash.unpack('H*')[0]
+    password_hash.unpack("H*")[0]
   end
 
   def encrypt_password

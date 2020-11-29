@@ -27,33 +27,33 @@
       <%# С помощью методов label и text_field у объекта f мы создаем теги %>
       <%# <label ... > и <input type="text" ... > с нужными атрибуами %>
       <div class="form-field">
-        <%= f.label :email, 'Логин (email)', class: 'form-label' %>
-        <%= f.text_field :email, class: 'form-text-field' %>
+        <%= f.label :email, "Логин (email)", class: "form-label" %>
+        <%= f.text_field :email, class: "form-text-field" %>
       </div>
 
       <%# Поступаем аналогично для других полей %>
       <div class="form-field">
-        <%= f.label :username, 'Никнейм', class: 'form-label' %>
-        <%= f.text_field :username, class: 'form-text-field' %>
+        <%= f.label :username, "Никнейм", class: "form-label" %>
+        <%= f.text_field :username, class: "form-text-field" %>
       </div>
 
       <div class="form-field">
-        <%= f.label :name, 'Имя', class: 'form-label' %>
-        <%= f.text_field :name, class: 'form-text-field' %>
+        <%= f.label :name, "Имя", class: "form-label" %>
+        <%= f.text_field :name, class: "form-text-field" %>
       </div>
 
       <div class="form-field">
-        <%= f.label :password, 'Пароль', class: 'form-label' %>
-        <%= f.password_field :password, class: 'form-text-field' %>
+        <%= f.label :password, "Пароль", class: "form-label" %>
+        <%= f.password_field :password, class: "form-text-field" %>
       </div>
 
       <div class="form-field">
-        <%= f.label :password_confirmation, 'Пароль ещё раз', class: 'form-label' %>
-        <%= f.password_field :password_confirmation, class: 'form-text-field' %>
+        <%= f.label :password_confirmation, "Пароль ещё раз", class: "form-label" %>
+        <%= f.password_field :password_confirmation, class: "form-text-field" %>
       </div>
 
       <div class="form-action">
-        <%= f.submit 'Зарегистрироваться', class: 'button button-small button-dark' %>
+        <%= f.submit "Зарегистрироваться", class: "button button-small button-dark" %>
       </div>
     <% end %>
 

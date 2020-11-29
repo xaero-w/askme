@@ -5,8 +5,8 @@
   <title>Хорошие вопросы</title>
   <link rel="stylesheet"
     href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-  <%= stylesheet_link_tag 'application', media: 'all' %>
-  <%= javascript_pack_tag 'application' %>
+  <%= stylesheet_link_tag "application", media: "all" %>
+  <%= javascript_pack_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -22,11 +22,11 @@
       <% if current_user %>
         <%# Даем ссылки на его профиль и на логаут %>
         <%= link_to "@#{current_user.username}", user_path(current_user) %> |
-        <%= link_to 'Выйти', session_path, data: {method: :delete} %>
+        <%= link_to "Выйти", session_path, data: {method: :delete} %>
       <% else %>
         <%# Если нету — ссылки на регистрацию и логин %>
-        <%= link_to 'Зарегистрироваться', new_user_path, class: 'button button-light button-small' %>
-        <%= link_to 'Войти', new_session_path, class: 'button button-light button-small' %>
+        <%= link_to "Зарегистрироваться", new_user_path, class: "button button-light button-small" %>
+        <%= link_to "Войти", new_session_path, class: "button button-light button-small" %>
       <% end %>
     </div>
   </div>

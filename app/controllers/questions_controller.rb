@@ -32,7 +32,7 @@ class QuestionsController < ApplicationController
 
     if @question.save
       # После сохранения вопроса редиректим на пользователя
-      redirect_to user_path(@question.user), notice: 'Вопрос задан'
+      redirect_to user_path(@question.user), notice: "Вопрос задан"
     else
       render :edit
     end
@@ -45,7 +45,7 @@ class QuestionsController < ApplicationController
   # @question у нас будет лежать вопрос с нужным id равным params[:id].
   def update
     if @question.update(question_params)
-      redirect_to user_path(@question.user), notice: 'Вопрос сохранен'
+      redirect_to user_path(@question.user), notice: "Вопрос сохранен"
     else
       render :edit
     end
@@ -65,7 +65,7 @@ class QuestionsController < ApplicationController
     @question.destroy
 
     # Отправляем пользователя на страницу адресата вопроса с сообщением
-    redirect_to user_path(user), notice: 'Вопрос удален :('
+    redirect_to user_path(user), notice: "Вопрос удален :("
   end
 
   private

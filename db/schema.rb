@@ -8,7 +8,7 @@
 # migrations from scratch. Old migrations may fail to apply correctly if those
 # migrations use external dependencies or application code.
 #
-# It's strongly recommended that you check this file into your version control system.
+# It"s strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 2020_07_01_185705) do
 
@@ -33,6 +33,8 @@ ActiveRecord::Schema.define(version: 2020_07_01_185705) do
     t.string "password_salt"
     t.string "avatar_url"
     t.string "avatar_color"
+    t.string "user_index"
+    t.string "email_index"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
   end

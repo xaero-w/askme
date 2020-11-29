@@ -1,4 +1,6 @@
 ru:
+  test:
+    question: "вопрос"
   user:
     questions:
       zero: "%{count} вопросов"
@@ -13,9 +15,11 @@ ru:
       many: "%{count} ответов"
       other: "%{count} ответов"
     unanswered:
-      zero: "%{count} неотвеченных"
-      one: "%{count} неотвеченый"
-      few: "%{count} неотвеченных"
-      many: "%{count} неотвеченных"
-      other: "%{count} неотвеченных"
-
+      zero: "%{count} без ответа"
+      one: "%{count} без ответа"
+      few: "%{count} без ответа"
+      many: "%{count} без ответов"
+      other: "%{count} без ответа"
+  time:
+    formats:
+      short: "%Y-%m-%d %H:%M:%S"

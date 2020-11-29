@@ -23,19 +23,19 @@
       <%# С помощью методов label и text_field у объекта f мы создаем теги %>
       <%# <label ... > и <input type="text" ... > с нужными атрибуами %>
       <div class="form-field">
-        <%= f.label :username, class: 'form-label' %>
-        <%= f.text_field :username, class: 'form-text-field' %>
+        <%= f.label :username, class: "form-label" %>
+        <%= f.text_field :username, class: "form-text-field" %>
       </div>
 
       <%# Поступаем аналогично для других полей %>
       <div class="form-field">
-        <%= f.label 'Ваше имя', class: 'form-label' %>
-        <%= f.text_field :name, class: 'form-text-field' %>
+        <%= f.label "Ваше имя", class: "form-label" %>
+        <%= f.text_field :name, class: "form-text-field" %>
       </div>
 
       <div class="form-field">
-        <%= f.label 'URL вашей аватарки', class: 'form-label' %>
-        <%= f.text_field :avatar_url, class: 'form-text-field' %>
+        <%= f.label "URL вашей аватарки", class: "form-label" %>
+        <%= f.text_field :avatar_url, class: "form-text-field" %>
       </div>
 
       <div class="buffer-top-large buffer-bottom">
@@ -43,24 +43,24 @@
       </div>
 
       <div class="form-field">
-        <%= f.label :password, class: 'form-label' %>
-        <%= f.password_field :password, class: 'form-text-field' %>
+        <%= f.label :password, class: "form-label" %>
+        <%= f.password_field :password, class: "form-text-field" %>
       </div>
 
       <div class="form-field">
-        <%= f.label :password_confirmation, class: 'form-label' %>
-        <%= f.password_field :password_confirmation, class: 'form-text-field' %>
+        <%= f.label :password_confirmation, class: "form-label" %>
+        <%= f.password_field :password_confirmation, class: "form-text-field" %>
       </div>
 
       <div class="form-field">
-        <%= f.label 'Цвет фона вашей аватарки', class: 'form-label' %>
-        <%= f.select :avatar_color, options_for_select([['Красный', '#FF0000'], ['Оранжевый', '#FF6600'], ['Желтый', '#FFFF00'], ['Зеленый', '#00FF00'], ['Голубой', '#33FFCC'], ['Синий', '#0000FF'], ['Фиолетовый', '#CC00FF']], @user.avatar_color), class: 'form-drop-menu' %>
+        <%= f.label "Цвет фона вашей аватарки", class: "form-label" %>
+        <%= f.select :avatar_color, options_for_select([["Красный", "#FF0000"], ["Оранжевый", "#FF6600"], ["Желтый", "#FFFF00"], ["Зеленый", "#00FF00"], ["Голубой", "#33FFCC"], ["Синий", "#0000FF"], ["Фиолетовый", "#CC00FF"]], @user.avatar_color), class: "form-drop-menu" %>
       </div>
 
       <div class="form-action buffer-top">
-        <%= f.submit 'Сохранить', class: 'button button-dark button-small' %>
-        <%= link_to 'Удалить профиль', user_path(@user), class: 'button button-red button-small',
-           method: :delete, data: {confirm: 'Точно удалить профиль?'} if current_user == @user %>
+        <%= f.submit "Сохранить", class: "button button-dark button-small" %>
+        <%= link_to "Удалить профиль", user_path(@user), class: "button button-red button-small",
+           method: :delete, data: {confirm: "Точно удалить профиль?"} if current_user == @user %>
       </div>
 
     <% end %>
